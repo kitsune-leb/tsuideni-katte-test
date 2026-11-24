@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f8f7f1">
+<title>ついでに買って | v0.3.3-a2b2（模擬版）</title>
+<style>
+:root{--ink:#303b31;--muted:#879087;--green:#537960;--deep:#32583f;--pale:#e6f0e5;--pink:#f9e9e4;--rose:#b96f68;--line:#e8ebe3;--cream:#f8f7f1;--shadow:0 12px 36px rgba(68,83,65,.06);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;color:var(--ink);background:var(--cream);font-size:14px}
+*{box-sizing:border-box}body{margin:0}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid #9cbfa6;outline-offset:2px}.wrap{max-width:1220px;margin:auto;padding:0 30px}.top{height:79px;border-bottom:1px solid #e7e9df;background:rgba(255,255,252,.76)}.top .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{display:flex;align-items:center;gap:11px}.brand-icon{width:43px;height:43px;background:#dcebdd;border-radius:15px;display:grid;place-items:center;font-size:23px}.brand strong{font-size:18px;letter-spacing:.04em;display:block}.brand small{color:#9ba39a;font-size:10px;letter-spacing:.16em}.family{display:flex;gap:9px;align-items:center;color:#777f76;font-size:12px}.family .dots{display:flex}.dot{width:29px;height:29px;border-radius:50%;border:2px solid white;display:grid;place-items:center;font-size:14px;margin-left:-5px;background:#f4ddd2}.dot:nth-child(2){background:#e4e6c8}.dot:nth-child(3){background:#d6e8d9}.hero{padding:33px 0 24px;display:flex;justify-content:space-between;align-items:end}.eyebrow{font-size:10px;color:#8ea18e;letter-spacing:.2em;font-weight:700}.hero h1{margin:8px 0 6px;font-size:25px;letter-spacing:.04em}.hero p{margin:0;color:#8b958b;font-size:13px}.sparkle{font-size:23px;color:#c8a571;letter-spacing:9px}.layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(330px,.85fr);gap:20px;align-items:start}.panel{background:#fff;border:1px solid #edf0e9;border-radius:21px;box-shadow:var(--shadow);overflow:hidden}.panel-head{padding:21px 24px 17px;display:flex;align-items:center;justify-content:space-between;gap:12px}.head-title{display:flex;align-items:center;gap:11px}.head-icon{width:38px;height:38px;border-radius:13px;background:#eff4eb;display:grid;place-items:center;font-size:19px}.head-title h2{font-size:16px;letter-spacing:.04em;margin:0 0 3px}.head-title p{font-size:11px;color:#a0a99f;margin:0}.pill{font-size:10px;color:#62876c;background:#edf5ed;border-radius:99px;padding:6px 10px;white-space:nowrap}.demo{margin:0 24px 16px;padding:11px 13px;border-radius:12px;background:#fbf6e8;color:#8d8063;font-size:11px;line-height:1.6}.chat{height:405px;overflow:auto;padding:2px 24px 20px;display:flex;flex-direction:column;gap:15px;scroll-behavior:smooth}.date-label{align-self:center;font-size:10px;letter-spacing:.13em;color:#b1bab0;margin:2px 0 3px}.message{display:flex;gap:9px;align-items:flex-start}.message.mine{flex-direction:row-reverse}.avatar{width:34px;height:34px;flex:none;border-radius:12px;display:grid;place-items:center;background:#f7e5dc;font-size:16px}.mine .avatar{background:#e2eee2}.msg-content{max-width:84%;min-width:0}.meta{display:flex;gap:8px;align-items:center;color:#a3aba2;font-size:10px;margin:0 2px 5px}.mine .meta{justify-content:flex-end}.bubble{padding:12px 15px;border-radius:4px 15px 15px 15px;background:#f6f7f3;line-height:1.65;overflow-wrap:anywhere;font-size:13px}.mine .bubble{border-radius:15px 4px 15px 15px;background:#eaf3e8}.added{display:inline-block;margin-top:6px;color:#668b70;font-size:10px}.composer{padding:15px 22px 20px;border-top:1px solid #f1f3ef}.examples{display:flex;gap:7px;overflow:auto;margin-bottom:12px;scrollbar-width:none}.examples button{border:0;background:#f7f8f4;color:#7e897e;border-radius:20px;padding:7px 11px;white-space:nowrap;font-size:11px}.input-row{display:flex;gap:9px}.input-row input{min-width:0;flex:1;background:#f7f8f5;border:1px solid transparent;border-radius:14px;padding:13px 15px;color:var(--ink)}input::placeholder{color:#bbc2ba}.send{border:0;background:var(--green);color:white;border-radius:14px;padding:0 18px;font-weight:700}.composer small{display:block;color:#a5ada3;font-size:10px;margin-top:8px;line-height:1.5}.side{display:grid;gap:16px}.list-head{padding-bottom:10px}.count{color:var(--green);font-size:12px}.list{padding:0 20px}.task{display:flex;align-items:center;gap:11px;padding:13px 4px;border-bottom:1px solid #f0f2ed}.task:last-child{border:0}.check{width:24px;height:24px;border:1.5px solid #cedbcf;border-radius:8px;background:white;flex:none;display:grid;place-items:center;color:white;padding:0}.check.done{background:#9cbda2;border-color:#9cbda2}.task-body{flex:1;min-width:0}.task-title{font-size:13px;font-weight:700;overflow-wrap:anywhere}.task-meta{color:#a4aca2;font-size:10px;margin-top:5px}.task.done .task-title{text-decoration:line-through;color:#abb3a9}.claim{border:0;background:#f5f7f2;color:#6d806e;padding:7px 9px;border-radius:9px;font-size:10px;white-space:nowrap}.claim.active{background:#f9e9dc;color:#a87b54}.delete{border:0;color:#c0c7be;background:none;font-size:16px;padding:4px}.empty{text-align:center;color:#a2aca1;font-size:12px;padding:26px 10px}.manual{padding:14px 23px 20px;display:flex;gap:8px}.manual input{min-width:0;flex:1;border:1px solid #e8eee6;border-radius:11px;padding:10px 12px}.manual button{border:0;background:#eaf2e8;color:#628066;border-radius:11px;padding:0 13px;font-size:12px;font-weight:700}.tip{background:#edf4e9;border:0;padding:18px 21px;display:flex;gap:13px;align-items:center}.tip-icon{width:43px;height:43px;border-radius:15px;background:#fff;display:grid;place-items:center;font-size:22px;flex:none}.tip strong{font-size:12px}.tip p{margin:5px 0 0;color:#829483;font-size:11px;line-height:1.6}.status{min-height:17px;font-size:11px;color:#a77a62;padding:0 24px 12px}.footer{text-align:center;color:#b4bdb2;padding:29px 5px;font-size:10px;letter-spacing:.07em}.footer b{color:#dfb3a8}.controls{display:flex;align-items:center;gap:7px}.who-label{font-size:10px;color:#98a296}.controls select{border:1px solid #e7ede5;background:white;border-radius:10px;padding:7px;color:#637b66;font-size:11px}.confirm-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}.confirm-list button{border:1px solid #d4e4d5;border-radius:9px;color:#577a5e;background:white;padding:6px 9px;font-size:11px}.screen-note{font-size:11px;color:#9ba59a;line-height:1.7;padding:0 23px 18px}.flash{animation:flash 1.5s ease}@keyframes flash{0%,100%{background:transparent}30%{background:#f5f9ed}}
+.store-filters{display:flex;gap:6px;overflow-x:auto;padding:3px 20px 12px;scrollbar-width:none}.store-filters button{flex:none;border:1px solid #edf1e9;background:#f8f9f6;color:#849184;border-radius:99px;padding:7px 10px;font-size:11px}.store-filters button.selected{background:#e3efe2;border-color:#dcebdd;color:#537960;font-weight:700}.store-select{max-width:110px;margin-top:6px;padding:3px 7px;border:1px solid #e8eee5;border-radius:8px;background:#fafbf8;color:#788a79;font-size:10px}.store-note{padding:0 23px 9px;color:#a2aca1;font-size:10px;line-height:1.5}
+.safety{margin:0 0 18px;padding:16px 20px;border:1px solid #e8d5b8;border-radius:16px;background:#fff8e9;color:#705f43;line-height:1.65}.safety[hidden],.layout[hidden]{display:none}.safety h2{font-size:15px;margin:0 0 4px}.safety p{font-size:12px;margin:0 0 10px}.safety-actions{display:flex;gap:8px;flex-wrap:wrap}.safety-actions button{border:1px solid #d8e5d5;background:#f2f7ef;color:#466a4c;border-radius:10px;padding:8px 10px;font-size:12px;font-weight:700}.safety-actions button[hidden]{display:none}button:disabled,input:disabled,select:disabled{opacity:.55;cursor:not-allowed}
+@media(max-width:760px){.wrap{padding:0 16px}.top{height:68px}.brand-icon{width:38px;height:38px}.brand strong{font-size:16px}.brand small{font-size:9px}.family .label{display:none}.hero{padding:26px 2px 20px}.hero h1{font-size:21px}.hero p{font-size:12px}.sparkle{font-size:17px}.layout{grid-template-columns:1fr;gap:14px}.chat{height:320px}.panel-head{padding:18px 19px 14px}.demo{margin:0 19px 15px}.chat{padding:0 19px 18px}.composer{padding:13px 17px 17px}.list{padding:0 18px}.manual{padding:13px 19px 18px}.footer{padding:24px 3px}.family{gap:2px}.controls{gap:4px}.who-label{display:none}}
+.candidates{margin:10px 0 0;padding:10px;border:1px solid #d4e4d5;border-radius:10px;background:#fff;color:#577a5e;font-size:11px}.candidates legend{font-weight:700}.candidates label{display:block;padding:3px 0}.candidates input{margin-right:6px;accent-color:#537960}.candidates .candidate-note{margin:3px 0;color:#8d8063}.candidate-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}.candidate-actions button{border:1px solid #d4e4d5;border-radius:9px;color:#577a5e;background:#f2f7ef;padding:6px 9px;font-size:11px}
+.backup-tools{margin:0 0 18px;padding:12px 16px;border:1px solid #dcebdd;border-radius:16px;background:#f4f8ef;color:#466a4c;line-height:1.6}.backup-tools summary{cursor:pointer;font-weight:700}.backup-tools p{margin:8px 0;font-size:12px}.backup-tools button,.backup-tools .file-label{display:inline-block;margin:4px 6px 4px 0;padding:9px 12px;border:1px solid #d4e4d5;border-radius:10px;background:white;color:#466a4c;font-size:12px;font-weight:700}.backup-tools .file-label{cursor:pointer}.backup-tools input[type=file]{display:block;max-width:100%;margin-top:6px;font-size:12px}.backup-report{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px}.backup-report:empty{display:none}
+.screen[hidden],.family[hidden]{display:none}.mode-card{max-width:680px;margin:0 auto 20px;padding:24px;background:#fff;border:1px solid #edf0e9;border-radius:21px;box-shadow:var(--shadow)}.mode-card h2{margin:0 0 8px;font-size:18px;color:var(--deep)}.mode-card p{margin:0 0 16px;line-height:1.7;color:#788a79}.mode-actions{display:flex;flex-wrap:wrap;gap:10px}.mode-actions button,.mode-bar button{border:1px solid #d4e4d5;border-radius:12px;padding:11px 14px;color:#466a4c;background:#f2f7ef;font-weight:700}.mode-actions .primary{background:var(--green);border-color:var(--green);color:#fff}.mode-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin:0 0 16px;padding:10px 14px;border-radius:14px;background:#edf4e9;color:#537960;font-size:12px}.mode-bar .mode-actions{gap:6px}.mode-bar button{padding:8px 10px;font-size:11px}@media(max-width:760px){.mode-card{padding:20px}.mode-actions{flex-direction:column}.mode-actions button{width:100%}.mode-bar .mode-actions{flex-direction:row}.mode-bar .mode-actions button{width:auto}}
+.mock-auth{margin:0 0 18px;padding:16px;border:1px solid #dcebdd;border-radius:14px;background:#f4f8ef}.mock-auth .mock-notice{font-size:12px;color:#5a755d}.mock-auth .mock-status{font-weight:700;color:var(--deep);min-height:1.7em}.mock-auth .mock-outcomes{margin-top:12px}.mock-auth .mock-outcomes[hidden],.mock-auth button[hidden]{display:none}.mock-auth .mock-outcomes p{font-size:12px;margin-bottom:8px}
+.checkpoint{margin:0 0 18px;padding:16px 20px;border:1px solid #dcebdd;border-radius:16px;background:#f4f8ef;color:#466a4c;line-height:1.7}.checkpoint[hidden],.checkpoint button[hidden]{display:none}.checkpoint p{margin:0 0 10px;font-size:12px}.checkpoint .mode-actions{margin-top:8px}.checkpoint-warning{color:#8d6b43!important;font-weight:700}.checkpoint-warning:empty{display:none}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><div class="brand"><div class="brand-icon" aria-hidden="true">🧺</div><div><strong>ついでに買って</strong><small>OUR LITTLE SHOPPING NOTE</small></div></div><div class="family" hidden><div class="dots" aria-hidden="true"><span class="dot">🐻</span><span class="dot">🐱</span><span class="dot">🐰</span></div><span class="label">かぞくのメモ</span></div></div></header>
+<main class="wrap"><div class="hero"><div><div class="eyebrow">FOR OUR EVERYDAY</div><h1>ひとことから、<br class="mobile-break" hidden>お買いものメモに。<span aria-hidden="true"> 🌿</span></h1><p>気づいたことを、家族にぽつり。</p></div><div class="sparkle" aria-hidden="true">✳︎ ˖</div></div>
+<section class="screen mode-card" id="homeScreen" aria-labelledby="homeTitle"><h2 id="homeTitle" tabindex="-1">使い方をえらんでね</h2><p>ひとことから、買いものメモをつくろう。</p><div class="mode-actions"><button class="primary" id="homeTrial" type="button">🌿 まずは使ってみる</button><button id="homeShare" type="button">👨‍👩‍👧 家族と共有する</button></div><p>おためし版のデータは、このブラウザに保存されます。</p></section>
+<section class="screen mode-card" id="shareScreen" aria-labelledby="shareTitle" hidden><h2 id="shareTitle" tabindex="-1">👨‍👩‍👧 家族と共有する</h2><p>現在準備中のため、まだ家族共有はできません。</p><div class="mock-auth"><p class="mock-notice">これはログインの模擬画面です。Googleへの接続や実際のログインは行われません。</p><p class="mock-status" id="mockAuthStatus" role="status" aria-live="polite">未ログイン（模擬）</p><div class="mode-actions"><button class="primary" id="mockGoogleLogin" type="button">Googleでログイン（模擬）</button><button id="mockLogout" type="button" hidden>ログアウト（模擬）</button></div><div class="mock-outcomes" id="mockOutcomes" hidden><p>模擬する結果を選んでね。</p><div class="mode-actions" role="group" aria-label="模擬ログインの結果"><button id="mockSuccess" type="button">成功を試す</button><button id="mockFailure" type="button">失敗を試す</button><button id="mockCancel" type="button">キャンセルを試す</button></div></div></div><p class="checkpoint-warning" id="authSafetyWarning" role="status"></p><div class="checkpoint"><p>再読み込みに備え、入力途中の内容をこのタブに一時保存する練習です。実際のログインや外部通信は行いません。</p><div class="mode-actions"><button id="checkpointSimulate" type="button">退避して再読み込みを試す（模擬）</button></div></div><div class="mode-actions"><button class="primary" id="shareTrial" type="button">🌿 おためし版へ戻る</button><button id="shareHome" type="button">ホームに戻る</button></div></section>
+<section class="checkpoint" id="checkpointPanel" role="status" aria-live="polite" hidden><p id="checkpointMessage"></p><div class="mode-actions"><button id="checkpointConfirm" type="button" hidden>復元内容を確認して一時データを破棄</button><button id="checkpointRetry" type="button" hidden>タブの保護を再確認</button><button id="checkpointExport" type="button" hidden>一時データをダウンロード</button></div><p id="checkpointExportNotice"></p></section>
+<div class="screen" id="trialScreen" hidden><nav class="mode-bar" aria-label="画面の切り替え"><span id="trialTitle" tabindex="-1">🌿 おためし版</span><div class="mode-actions"><button id="trialShare" type="button">👨‍👩‍👧 家族と共有する</button><button id="trialHome" type="button">ホーム</button></div></nav>
+<details class="backup-tools" id="backupTools"><summary>📦 バックアップとファイル確認</summary><p>まず内容を確認し、JSONをダウンロードします。画面の入力も含まれます。ファイルは大切に保管してください。</p><button id="previewBackup" type="button">バックアップ内容を確認</button><button id="downloadBackup" type="button" disabled>JSONをダウンロード</button><div id="backupSummary" class="backup-report" role="status" aria-live="polite"></div><p>ダウンロードが完了したかはアプリでは分かりません。保存先で確認してください。</p><label class="file-label">保存したJSONを選んで確認<input id="backupFile" type="file" accept=".json,application/json"></label><div id="verifyBackup" class="backup-report" role="status" aria-live="polite"></div></details>
+<section id="safetyBanner" class="safety" role="alert" aria-live="assertive" hidden><h2 id="safetyTitle"></h2><p id="safetyMessage"></p><p id="backupNotice" role="status"></p><div class="safety-actions"><button id="retrySave" type="button" hidden>保存を再試行</button><button id="downloadDraft" type="button" hidden>この画面のデータをダウンロード</button><button id="downloadStored" type="button" hidden>保存領域のデータをダウンロード</button><button id="downloadPrevious" type="button" hidden>以前に確認したデータをダウンロード</button><button id="reloadSafe" type="button">再読み込み</button></div></section>
+<div class="layout"><section class="panel" aria-labelledby="chatTitle"><div class="panel-head"><div class="head-title"><div class="head-icon">💬</div><div><h2 id="chatTitle">かぞくのひとこと</h2><p>気軽におしゃべり</p></div></div><span class="pill">おためし版</span></div><div class="demo">この画面はおためし版です。データはこのブラウザだけに保存され、家族の端末にはまだ共有されません。</div><div class="chat" id="chat" aria-live="polite"></div><form class="composer" id="chatForm"><div class="examples" aria-label="入力例"><button type="button" data-example="牛乳なくなりそう">🥛 牛乳なくなりそう</button><button type="button" data-example="洗剤買ってきて">🧴 洗剤買ってきて</button><button type="button" data-example="買ってきたよ">🛍️ 買ってきたよ</button></div><div class="input-row"><input id="message" aria-label="ひとこと" maxlength="140" placeholder="ひとこと、つぶやいてみよう" autocomplete="off"><button class="send" type="submit">送る ↑</button></div><small>「牛乳なくなりそう」など、対応する言い方から買い物メモを作ります。</small></form></section>
+<aside class="side"><section class="panel" aria-labelledby="listTitle"><div class="panel-head list-head"><div class="head-title"><div class="head-icon">🛒</div><div><h2 id="listTitle">買いものメモ</h2><p>ついでに、お願いね</p></div></div><span class="count" id="count"></span></div><div id="storeFilters" class="store-filters" aria-label="お店で絞り込む"></div><div class="store-note">お店はあとから変更できるよ。迷うものは「どこでも」に。</div><div id="tasks" class="list"></div><div class="status" id="status" role="status"></div><form class="manual" id="manualForm"><input id="manual" aria-label="買い物を直接追加" maxlength="35" placeholder="買うものを直接追加"><button type="submit">＋ 追加</button></form><div class="screen-note">おためし中は、上の名前を切り替えて家族になりきれます。</div></section><div class="panel tip"><div class="tip-icon">🌼</div><div><strong>お買いものの前に、ちらっと。</strong><p>家族の「なくなりそう」を、<br>みんなの「買ってくるね」に。</p></div></div></aside></div></div><div class="footer">MADE FOR THE LITTLE THINGS <b>♥</b></div></main>
+<script>
+(()=>{'use strict';
+const key='tsuideni-katte-demo-v1';
+const $=id=>document.getElementById(id);const normalize=s=>s.normalize('NFKC').replace(/[\s　]+/g,'').toLowerCase();
+const initial=()=>({messages:[{id:'m1',who:'おかあさん',text:'トイレットペーパー、もうすぐなくなりそう 🧻',at:'さっき',added:'トイレットペーパー'},{id:'m2',who:'わたし',text:'了解！買い物のときに見ておくね 🌿',at:'さっき'}],tasks:[{id:'t1',name:'トイレットペーパー',by:'おかあさん',done:false,claim:''},{id:'t2',name:'牛乳',by:'わたし',done:false,claim:''}]});
+let state={messages:[],tasks:[]},pendingState=null,pendingCandidateIndex=null,expectedRaw=null,observedRaw=null,previousStoredRaw=null,unconfirmedRaw=null,safetyMode='ok',dirty=false,pendingInput='',loadedValid=false,allowUnload=false,lastAnnouncedMode='ok',checkpointHold=false;
+function validData(value){
+ if(!value||typeof value!=='object'||Array.isArray(value)||!Array.isArray(value.messages)||!Array.isArray(value.tasks))return false;
+ if(!value.messages.every(m=>m&&typeof m==='object'&&!Array.isArray(m)&&typeof m.who==='string'&&typeof m.text==='string'))return false;
+ const ids=new Set();return value.tasks.every(t=>{if(!t||typeof t!=='object'||Array.isArray(t)||typeof t.id!=='string'||!t.id||ids.has(t.id)||typeof t.name!=='string'||!t.name.trim())return false;ids.add(t.id);return (t.done===undefined||typeof t.done==='boolean')&&(t.by===undefined||typeof t.by==='string')&&(t.claim===undefined||typeof t.claim==='string')&&(t.store===undefined||typeof t.store==='string')});
+}
+function loadData(){
+ try{expectedRaw=localStorage.getItem(key);observedRaw=expectedRaw}catch(e){safetyMode='unavailable';return}
+ if(expectedRaw===null){state=initial();loadedValid=true;return}
+ try{const parsed=JSON.parse(expectedRaw);if(!validData(parsed)){safetyMode='invalid';return}state=parsed;loadedValid=true}catch(e){safetyMode='invalid'}
+}
+loadData();
+let who='わたし',storeFilter='すべて';const avatar={わたし:'🐰',おかあさん:'🐻',おとうさん:'🐱'};
+const stores=['100均','薬局','スーパー','どこでも'];
+function guessStore(name){if(/牛乳|ミルク|卵|たまご|玉子|パン|お米|おこめ/.test(name)||/^(米|水|お水)$/.test(name))return 'スーパー';if(/洗剤|シャンプー|ハンドソープ|歯磨き粉|歯みがき粉/.test(name))return '薬局';if(/電池/.test(name))return '100均';return 'どこでも'}
+function syncSafetyUI(){
+ const banner=$('safetyBanner'),blocked=safetyMode!=='ok';banner.hidden=!blocked;$('chatTitle').closest('.layout').hidden=!loadedValid;
+ if(lastAnnouncedMode!==safetyMode)$('backupNotice').textContent='';
+ if(blocked){$('status').textContent='';const messages={invalid:['保存データを読み込めません','保存データが破損しているか形式が不正です。元データは上書きしていません。編集を停止しています。'],unavailable:['保存領域を確認できません','ブラウザの保存領域にアクセスできません。保存データを上書きせず、編集を停止しています。設定を確認してください。'],readFailed:['保存前にデータを確認できません','保存前の読み込みに失敗したため、書き込みを行っていません。画面の変更と入力はこのタブ内に残っています。'],writeFailed:['保存できませんでした','保存領域への書き込みに失敗しました。画面の変更と入力はこのタブ内に残っています。'],verifyFailed:['保存できたか確認できません','書き込み後の確認に失敗しました。保存された可能性があります。再試行時は保存領域を確認します。画面の変更と入力はこのタブ内に残っています。'],prepareFailed:['保存の準備ができません','データを保存用に変換できませんでした。画面の変更と入力はこのタブ内に残っています。'],conflict:['ほかの画面でデータが変更されました','古い内容での上書きを停止しました。画面のデータと保存領域のデータを別々に確認してください。']};const [title,message]=messages[safetyMode];$('safetyTitle').textContent=title;$('safetyMessage').textContent=message+' ダウンロードボタンはファイルの保存を試みますが、完了は確認できません。再読み込み前に、必要なファイルの存在と内容をダウンロード先で確認してください。'}
+ $('retrySave').hidden=!['readFailed','writeFailed','verifyFailed','prepareFailed'].includes(safetyMode);$('downloadDraft').hidden=!blocked||!loadedValid;$('downloadStored').hidden=!blocked;$('downloadPrevious').hidden=!blocked||typeof previousStoredRaw!=='string';
+ $('retrySave').disabled=checkpointHold;
+ $('reloadSafe').disabled=checkpointHold;
+ $('checkpointSimulate').disabled=checkpointHold;
+ for(const el of document.querySelectorAll('#chatForm input,#chatForm button,#manualForm input,#manualForm button,#tasks button,#tasks select,#storeFilters button,#who,#chat [data-chat-done],#chat [data-candidate-action],#chat [data-candidate-index]'))el.disabled=blocked||checkpointHold||el.dataset.empty==='true';
+ $('authSafetyWarning').textContent=blocked?'保存に関する警告があります。おためし版で状態を確認してください。':'';
+ if(blocked&&lastAnnouncedMode!==safetyMode&&typeof banner.scrollIntoView==='function')banner.scrollIntoView({block:'start'});lastAnnouncedMode=safetyMode;
+}
+function finishSave(raw){if(pendingState){state=pendingState;pendingState=null;pendingCandidateIndex=null}expectedRaw=raw;observedRaw=raw;unconfirmedRaw=null;dirty=false;safetyMode='ok';if(pendingInput){$(pendingInput).value='';pendingInput=''}syncSafetyUI();return true}
+function rememberPrevious(raw){if(typeof raw==='string'&&previousStoredRaw===null)previousStoredRaw=raw}
+function save(retry=false){
+ if(checkpointHold)return false;
+ if(safetyMode!=='ok'&&!(retry&&['readFailed','writeFailed','verifyFailed','prepareFailed'].includes(safetyMode)))return false;
+ $('status').textContent='';$('backupNotice').textContent='';
+ let next;try{next=JSON.stringify(pendingState||state)}catch(e){safetyMode='prepareFailed';syncSafetyUI();return false}
+ const prior=observedRaw;let current;try{current=localStorage.getItem(key);observedRaw=current}catch(e){safetyMode=unconfirmedRaw!==null?'verifyFailed':'readFailed';syncSafetyUI();return false}
+ if(unconfirmedRaw!==null){if(current===unconfirmedRaw)return finishSave(current);if(current!==prior)rememberPrevious(prior);safetyMode='conflict';syncSafetyUI();return false}
+ if(retry&&current===next)return finishSave(current);
+ if(current!==expectedRaw){if(current!==prior)rememberPrevious(prior);safetyMode='conflict';syncSafetyUI();return false}
+ try{localStorage.setItem(key,next)}catch(e){safetyMode='writeFailed';syncSafetyUI();return false}
+ unconfirmedRaw=next;
+ let saved;try{saved=localStorage.getItem(key);observedRaw=saved}catch(e){safetyMode='verifyFailed';syncSafetyUI();return false}
+ if(saved!==next){if(saved!==current)rememberPrevious(current);safetyMode='conflict';syncSafetyUI();return false}
+ return finishSave(saved);
+}
+function downloadText(name,text){try{const url=URL.createObjectURL(new Blob([text],{type:'application/json;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);$('backupNotice').textContent+=' ダウンロードを試みました。完了は確認できないため、ダウンロード先でファイルの存在と内容を確認してください。'}catch(e){$('backupNotice').textContent+=' ダウンロードを開始できませんでした。このタブを閉じずにブラウザの設定を確認してください。'}}
+function escapeHTML(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,8)}
+function time(){return new Date().toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'})}
+function validCandidates(m){return m.candidateVersion===1&&Array.isArray(m.candidates)&&m.candidates.length>0&&m.candidates.every(c=>c&&typeof c.name==='string'&&typeof c.selected==='boolean')}
+function renderCandidates(m,index){
+ if(!validCandidates(m))return '';
+ if(m.candidateStatus==='completed')return `<div class="added">${escapeHTML(m.candidateSummary||'確認しました')}</div>`;
+ if(m.candidateStatus==='cancelled')return '<div class="added">候補をキャンセルしました</div>';
+ if(m.candidateStatus!=='pending')return '';
+ const any=m.candidates.some(c=>c.selected),waiting=pendingState&&pendingCandidateIndex===index;
+ return `<fieldset class="candidates"><legend>買いもの候補を確認</legend>${m.candidates.map((c,j)=>{const similar=findVariant(c.name,state.tasks)||m.candidates.find((other,k)=>k!==j&&normalize(other.name)!==normalize(c.name)&&dictionaryName(c.name)&&dictionaryName(other.name)===dictionaryName(c.name));return `<label><input type="checkbox" data-candidate-index="${j}" data-message-index="${index}" ${c.selected?'checked':''}>${escapeHTML(c.name)}</label>${similar?`<div class="candidate-note">「${escapeHTML(similar.name)}」と表記が似ています。別の商品なら選んで追加できます。</div>`:''}`}).join('')}${waiting?'<div class="candidate-note">選択と変更を保持しています。保存結果を確認してください。</div>':''}<div class="candidate-actions"><button type="button" data-candidate-action="confirm" data-message-index="${index}" data-empty="${!any}" ${any?'':'disabled'}>選んだものを追加</button><button type="button" data-candidate-action="cancel" data-message-index="${index}">キャンセル</button></div></fieldset>`;
+}
+function render(){
+ const chat=$('chat');chat.innerHTML='<div class="date-label">✳︎ &nbsp; かぞくのひとこと &nbsp; ✳︎</div>'+state.messages.map((m,i)=>`<div class="message ${m.who===who?'mine':''}"><div class="avatar">${avatar[m.who]||'🐻'}</div><div class="msg-content"><div class="meta"><span>${escapeHTML(m.who)}</span><span>${escapeHTML(m.at)}</span></div><div class="bubble">${escapeHTML(m.text)}${m.added?`<div class="added">✳︎ 「${escapeHTML(m.added)}」を買いものメモに追加</div>`:''}${m.duplicate?`<div class="added">✳︎ 「${escapeHTML(m.duplicate)}」はメモに入っているよ</div>`:''}${renderCandidates(m,i)}${m.askDone?'<div class="added">どれを買ってきた？</div><div class="confirm-list">'+state.tasks.filter(t=>!t.done).map(t=>`<button type="button" data-chat-done="${escapeHTML(t.id)}" data-message-index="${i}">${escapeHTML(t.name)}</button>`).join('')+'</div>':''}</div></div></div>`).join('');
+ const visible=state.tasks.filter(t=>storeFilter==='すべて'||(t.store||guessStore(t.name))===storeFilter);const active=visible.filter(t=>!t.done).length;$('count').textContent=`あと ${active} こ`;
+ $('storeFilters').innerHTML=['すべて',...stores].map(s=>`<button type="button" data-filter="${s}" class="${s===storeFilter?'selected':''}" aria-pressed="${s===storeFilter}">${s==='100均'?'🧺 ':s==='薬局'?'🧴 ':s==='スーパー'?'🥬 ':s==='どこでも'?'🌼 ':''}${s}</button>`).join('');
+ $('tasks').innerHTML=visible.length?visible.map(t=>`<div class="task ${t.done?'done':''}" data-task="${escapeHTML(t.id)}"><button class="check ${t.done?'done':''}" type="button" data-action="done" aria-label="${escapeHTML(t.name)}を${t.done?'未完了に戻す':'購入済みにする'}">${t.done?'✓':''}</button><div class="task-body"><div class="task-title">${escapeHTML(t.name)}</div><div class="task-meta">${t.done?'買えたよ ✓':t.claim?escapeHTML(t.claim)+' が買ってくるね':'💬 '+escapeHTML(t.by)+' からのメモ'}</div><select class="store-select" data-store aria-label="${escapeHTML(t.name)}を買うお店">${stores.map(s=>`<option ${s===(t.store||guessStore(t.name))?'selected':''}>${s}</option>`).join('')}</select></div>${!t.done?`<button type="button" class="claim ${t.claim?'active':''}" data-action="claim">${t.claim?(t.claim===who?'担当をやめる':'担当を変更'):'買ってくる'}</button>`:''}<button type="button" class="delete" data-action="remove" aria-label="${escapeHTML(t.name)}を削除">×</button></div>`).join(''):'<div class="empty">ここにはまだメモがないよ 🌷</div>';
+ syncSafetyUI();
+}
+const dictionary=[['トイレットペーパー',/トイレットペーパー|トイペ/],['ティッシュ',/ティッシュ/],['牛乳',/牛乳|ミルク/],['洗濯洗剤',/洗濯洗剤/],['食器用洗剤',/食器用洗剤/],['洗剤',/洗剤/],['たまご',/たまご|卵|玉子/],['パン',/パン/],['お米',/お米|おこめ|米/],['シャンプー',/シャンプー/],['ハンドソープ',/ハンドソープ/],['歯みがき粉',/歯磨き粉|歯みがき粉/],['ゴミ袋',/ゴミ袋|ごみ袋/],['電池',/電池/],['水',/水/]];
+function dictionaryName(name){const n=name.normalize('NFKC').trim();const entry=dictionary.find(([,re])=>{const m=n.match(re);return m&&m[0]===n});return entry?entry[0]:null}
+function findVariant(name,tasks,excludeId=''){const canonical=dictionaryName(name);if(!canonical)return null;return tasks.find(t=>!t.done&&t.id!==excludeId&&normalize(t.name)!==normalize(name)&&dictionaryName(t.name)===canonical)||null}
+function negativeOrConditional(text){return /買わ(?:な|ず)|いらな|いらん|要らな|要らん|不要|必要(?:は|が)?な[いく]|必要(?:は|が)?ありません|なくても|(?:まだ|十分|もう)ある|(?:まだ|十分)残って|足りている|ある(?:よ|ね|から|ので|けど|です|[。！!]?\s*$)|買(?:っ|い)て(?:い)?な[いく]|買うのをやめ|買ってきたら|買えたら|買ったら|購入したら|よね|かも|かな|でしょう|だろう|と思う|[？?]/.test(text)}
+function purchaseCompleted(text){return !negativeOrConditional(text)&&/(?:買ってきた|買えた|購入した|買った)(?:よ|ね|！|!|。|\s|$)/.test(text)}
+function detect(text){
+ const phrase=text.normalize('NFKC').trim();if(!phrase||negativeOrConditional(phrase))return {items:[],review:false};
+ const end=phrase.replace(/[！!。]+$/,'');if(/^(ありがとう|ありがと|了解|わかった|おはよう|こんにちは|こんばんは|おやすみ|ただいま|おかえり|ごめん|はい|うん|オッケー|OK)$/i.test(end)||/(疲れた|眠い|すいた|行くよ|行ってきます|おいしい|美味しい|できた|帰る|行った|よかった|助かる|です|ます)$/.test(end))return {items:[],review:false};
+ const direct=dictionaryName(end);if(direct)return {items:[direct],review:false};
+ const request=end.match(/^(.+?)(?:を|が|は|、)?(?:もうすぐ|そろそろ)?(?:買って(?:きて)?(?:ください|ね|ほしい|欲しい)?|買いたい|買おう|必要|ほしい|欲しい|なくなりそう|無くなりそう|なくなった|無くなった|切れそう|きれそう|切れた|きれた|足りない|少ない|少なくなった|あと少し|もう少し|補充(?:して)?)(?:よ)?$/);
+ const source=(request?request[1]:end).trim().replace(/[、,\s]+$/,'');if(!source||source.length>80)return {items:[],review:false};
+ const parts=source.split(/[、,・]|と/).map(s=>s.trim()).filter(Boolean);if(!parts.length)return {items:[],review:false};
+ const parsed=[];let unknown=false;for(const part of parts){const known=dictionaryName(part);if(known){parsed.push({original:part,name:known});continue}if(part.length>20||!/^[\p{L}\p{N}ー]+$/u.test(part)||/(?:に|は|が|を|で|へ|から|まで|なら|ので|けど|です|ます|した|だった|たい|ない|ある)/.test(part))return {items:[],review:false};unknown=true;parsed.push({original:part,name:part})}
+ const items=parsed.map(p=>parsed.some(other=>other.name===p.name&&normalize(other.original)!==normalize(p.original))?p.original:p.name);const unique=[...new Set(items)];return {items:unique,review:parts.length>1||unknown};
+}
+function addTaskTo(target,name,by){const n=name.trim();if(!n)return 'empty';const same=target.tasks.find(t=>!t.done&&normalize(t.name)===normalize(n));if(same)return 'duplicate';target.tasks.unshift({id:uid(),name:n,by,done:false,claim:'',store:guessStore(n)});return 'added'}
+function addTask(name,by){return addTaskTo(state,name,by)}
+function addMessage(text,extra={}){state.messages.push({id:uid(),who,text,at:time(),...extra});if(state.messages.length>200)state.messages.shift()}
+function scrollChat(){$('chat').scrollTop=$('chat').scrollHeight}
+function handleSend(e){e.preventDefault();if(checkpointHold||safetyMode!=='ok'||pendingState)return;const text=$('message').value.trim();if(!text)return;let more={};if(purchaseCompleted(text)){if(state.tasks.some(t=>!t.done))more.askDone=true}else{const detected=detect(text);if(detected.items.length){const item=detected.items[0];if(detected.review||findVariant(item,state.tasks)){more.candidateVersion=1;more.candidateStatus='pending';more.candidates=detected.items.map(name=>({name,selected:true}))}else{const result=addTask(item,who);if(result==='added')more.added=item;else if(result==='duplicate')more.duplicate=item}}}addMessage(text,more);dirty=true;pendingInput='message';save();render();scrollChat()}
+document.querySelector('.family').insertAdjacentHTML('afterbegin','<div class="controls"><span class="who-label">おためしの名前</span><select id="who" aria-label="おためしの名前"><option>わたし</option><option>おかあさん</option><option>おとうさん</option></select></div>');
+document.addEventListener('change',e=>{if(!checkpointHold&&e.target.id==='who'){who=e.target.value;render();scrollChat()}});
+$('storeFilters').addEventListener('click',e=>{if(checkpointHold||safetyMode!=='ok')return;const b=e.target.closest('[data-filter]');if(!b)return;storeFilter=b.dataset.filter;render()});
+$('tasks').addEventListener('change',e=>{if(checkpointHold||safetyMode!=='ok'||!e.target.matches('[data-store]'))return;const t=state.tasks.find(x=>x.id===e.target.closest('[data-task]').dataset.task);if(!t)return;t.store=e.target.value;dirty=true;save();render()});
+$('chatForm').addEventListener('submit',handleSend);document.querySelectorAll('[data-example]').forEach(b=>b.addEventListener('click',()=>{$('message').value=b.dataset.example;$('message').focus()}));
+$('manualForm').addEventListener('submit',e=>{e.preventDefault();if(checkpointHold||safetyMode!=='ok')return;const name=$('manual').value.trim();const result=addTask(name,who);if(result!=='added'){$('status').textContent=result==='duplicate'?'その買いものは、もうメモに入っているよ。':'';return}dirty=true;pendingInput='manual';$('status').textContent=save()?'買いものメモに追加したよ 🌷':'';render()});
+$('tasks').addEventListener('click',e=>{if(checkpointHold||safetyMode!=='ok')return;const btn=e.target.closest('button[data-action]');if(!btn)return;const t=state.tasks.find(x=>x.id===btn.closest('[data-task]').dataset.task);if(!t)return;let message='';if(btn.dataset.action==='done'){if(t.done){const same=state.tasks.find(x=>!x.done&&x.id!==t.id&&normalize(x.name)===normalize(t.name));if(same){$('status').textContent='同じ買いものが未購入メモにあるため戻せません。';return}const similar=findVariant(t.name,state.tasks,t.id);if(similar&&!confirm(`未購入メモの「${similar.name}」と表記が似ています。別の商品として「${t.name}」を戻しますか？`))return}t.done=!t.done;t.claim='';message=t.done?'買えたね、ありがとう！':'買いものメモに戻したよ。'}else if(btn.dataset.action==='claim'){t.claim=t.claim===who?'':who;message=t.claim?`${who} が「${t.name}」を担当するよ。`:'担当を解除したよ。'}else if(btn.dataset.action==='remove'){if(!confirm(`「${t.name}」をメモから削除しますか？`))return;state.tasks=state.tasks.filter(x=>x.id!==t.id);message='メモから削除したよ。'}else return;dirty=true;$('status').textContent=save()?message:'';render()});
+$('chat').addEventListener('change',e=>{if(checkpointHold||safetyMode!=='ok'||pendingState||!e.target.matches('input[data-candidate-index]'))return;const i=Number(e.target.dataset.messageIndex),j=Number(e.target.dataset.candidateIndex),m=state.messages[i];if(!m||!validCandidates(m)||m.candidateStatus!=='pending'||!m.candidates[j])return;m.candidates[j].selected=!!e.target.checked;dirty=true;save();render()});
+$('chat').addEventListener('click',e=>{if(checkpointHold||safetyMode!=='ok'||pendingState)return;
+ const candidate=e.target.closest('[data-candidate-action]');if(candidate){const i=Number(candidate.dataset.messageIndex),m=state.messages[i],action=candidate.dataset.candidateAction;if(!m||!validCandidates(m)||m.candidateStatus!=='pending'||!['confirm','cancel'].includes(action))return;if(action==='confirm'&&!m.candidates.some(c=>c.selected))return;
+  const staged=JSON.parse(JSON.stringify(state)),next=staged.messages[i];if(action==='cancel')next.candidateStatus='cancelled';else{const added=[],duplicates=[];for(const c of next.candidates.filter(c=>c.selected)){const result=addTaskTo(staged,c.name,m.who);if(result==='added')added.push(c.name);else if(result==='duplicate')duplicates.push(c.name)}next.candidateStatus='completed';next.candidateSummary=[added.length?'追加: '+added.join('、'):'',duplicates.length?'すでにメモ: '+duplicates.join('、'):''].filter(Boolean).join(' / ')||'確認しました'}
+  pendingState=staged;pendingCandidateIndex=i;dirty=true;save();render();return}
+ const b=e.target.closest('[data-chat-done]');if(!b)return;const m=state.messages[Number(b.dataset.messageIndex)],task=state.tasks.find(t=>t.id===b.dataset.chatDone&&!t.done);if(!m||!m.askDone||!task)return;task.done=true;task.claim='';m.askDone=false;addMessage(task.name+'、買ってきたよ 🛍️');dirty=true;$('status').textContent=save()?'買えたね、ありがとう！':'';render();scrollChat()});
+let preparedBackup=null,lastDownloadedBackup=null,verificationTicket=0;
+const backupFormat='tsuideni-katte-backup',backupVersion=1,backupSizeLimit=64*1024*1024;
+function storedValidity(raw){try{return validData(JSON.parse(raw))?'valid':'invalid_structure'}catch(e){return 'invalid_json'}}
+function captureBackup(){
+ let current=null,readResult='unavailable';try{current=localStorage.getItem(key);readResult=current===null?'absent':'present'}catch(e){}
+ const screenData=loadedValid?JSON.parse(JSON.stringify(state)):null;
+ const attempted=loadedValid&&pendingState?JSON.parse(JSON.stringify(pendingState)):null;
+ let relationship='not_confirmed';
+ if(!loadedValid)relationship='screen_unavailable';
+ else if(readResult==='unavailable')relationship='storage_unavailable';
+ else if(safetyMode==='verifyFailed')relationship='not_confirmed';
+ else if(current!==expectedRaw)relationship='changed_since_load';
+ else if(readResult==='absent')relationship='no_saved_data';
+ else if(safetyMode==='ok'&&!dirty&&!attempted&&storedValidity(current)==='valid'&&JSON.stringify(screenData)===current)relationship='matches_last_checked_stored';
+ return {format:backupFormat,formatVersion:backupVersion,createdAtDevice:new Date().toISOString(),appVersion:'0.3.3-a2b2',storageKey:key,
+  stored:{readResult,rawJson:readResult==='present'?current:null,validation:readResult==='present'?storedValidity(current):null,lastObservedRaw:typeof observedRaw==='string'&&observedRaw!==current?observedRaw:null,previousRaw:typeof previousStoredRaw==='string'?previousStoredRaw:null},
+  screen:{available:loadedValid,relationship,safetyMode,dirty,data:screenData,inputValues:{message:$('message').value,manual:$('manual').value},pendingInput,pendingCandidateState:attempted}};
+}
+function candidateProblems(data){return data.messages.filter(m=>{if(!Object.prototype.hasOwnProperty.call(m,'candidateVersion')&&!Object.prototype.hasOwnProperty.call(m,'candidates')&&!Object.prototype.hasOwnProperty.call(m,'candidateStatus'))return false;return !validCandidates(m)||!['pending','completed','cancelled'].includes(m.candidateStatus)}).length}
+function summarizeBackupData(data){
+ const done=data.tasks.filter(t=>t.done===true).length,lines=[`商品 ${data.tasks.length}件（購入済み ${done}件、未購入または未設定 ${data.tasks.length-done}件）／チャット ${data.messages.length}件`];
+ const candidates=data.messages.filter(m=>validCandidates(m)&&['pending','completed','cancelled'].includes(m.candidateStatus));
+ const pending=candidates.filter(m=>m.candidateStatus==='pending').length,completed=candidates.filter(m=>m.candidateStatus==='completed').length,cancelled=candidates.filter(m=>m.candidateStatus==='cancelled').length;
+ lines.push(`候補：未確定 ${pending}件／確定 ${completed}件／キャンセル ${cancelled}件`);
+ for(const m of candidates)lines.push(`・${m.candidateStatus==='pending'?'未確定':m.candidateStatus==='completed'?'確定':'キャンセル'}：${m.candidates.map(c=>`${c.name}（${c.selected?'選択':'未選択'}）`).join('、')}`);
+ const problems=candidateProblems(data);if(problems)lines.push(`注意：形式を確認できない候補が ${problems}件あります。元のデータは保持します。`);
+ return lines.join('\n');
+}
+function summarizeStoredRaw(raw){const validity=storedValidity(raw);return validity==='valid'?summarizeBackupData(JSON.parse(raw)):validity==='invalid_json'?'JSONが破損しています。文字列をそのまま保全します。':'データ構造が不正です。文字列をそのまま保全します。'}
+function describeBackup(snapshot){
+ const s=snapshot.stored,view=snapshot.screen,lines=['【保存領域】'];
+ if(s.readResult==='absent')lines.push('この時点で保存データはありません。');
+ else if(s.readResult==='unavailable')lines.push('保存領域を読み取れません。現在の内容は不明です。');
+ else lines.push(summarizeStoredRaw(s.rawJson));
+ if(s.lastObservedRaw!==null)lines.push('\n【最後に確認した保存領域】\n現在の内容とは限りません。\n'+summarizeStoredRaw(s.lastObservedRaw));
+ if(s.previousRaw!==null)lines.push('\n【以前に確認した保存領域】\n現在の内容とは限りません。\n'+summarizeStoredRaw(s.previousRaw));
+ lines.push('\n【この画面】');
+ if(!view.available)lines.push('画面データを確認できません。');else lines.push(summarizeBackupData(view.data));
+ const descriptions={matches_last_checked_stored:'画面データは、確認した保存領域の内容と一致します。入力欄は別です。',no_saved_data:'保存領域にデータはありません。画面の内容は保存済みとは限りません。',changed_since_load:'保存領域が読み込み時から変わっています。画面と別々に保全します。',storage_unavailable:'保存状態は確認できません。',screen_unavailable:'画面データは利用できません。',not_confirmed:'画面の変更は保存状態を確認できません。'};
+ lines.push(descriptions[view.relationship]);
+ lines.push(`入力欄（ひとこと）：${view.inputValues.message||'（空）'}`,`入力欄（直接追加）：${view.inputValues.manual||'（空）'}`,'入力欄は、画面データに反映済みの場合もあります。');
+ if(view.pendingCandidateState)lines.push('【保存結果が未確認の候補操作】\n操作を試みたデータも別に含みます。完了したとは限りません。\n'+summarizeBackupData(view.pendingCandidateState));
+ return lines.join('\n');
+}
+function validateBackup(value){
+ if(!value||typeof value!=='object'||Array.isArray(value)||value.format!==backupFormat)throw new Error('このアプリのバックアップ形式ではありません。');
+ if(value.formatVersion!==backupVersion)throw new Error('対応していないバックアップのバージョンです。');
+ if(typeof value.createdAtDevice!=='string'||!/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{3}Z$/.test(value.createdAtDevice)||Number.isNaN(Date.parse(value.createdAtDevice))||!['0.3.1','0.3.2','0.3.3-a2a','0.3.3-a2b','0.3.3-a2b2'].includes(value.appVersion)||value.storageKey!==key)throw new Error('バックアップの基本情報が不正です。');
+ const s=value.stored,v=value.screen;
+ if(!s||typeof s!=='object'||Array.isArray(s)||!['present','absent','unavailable'].includes(s.readResult)||!(s.lastObservedRaw===null||typeof s.lastObservedRaw==='string')||!(s.previousRaw===null||typeof s.previousRaw==='string'))throw new Error('保存領域の記録が不正です。');
+ if(s.readResult==='present'){if(typeof s.rawJson!=='string'||s.validation!==storedValidity(s.rawJson))throw new Error('保存領域のデータと検証結果が一致しません。')}else if(s.rawJson!==null||s.validation!==null)throw new Error('保存領域の読み取り状態が不正です。');
+ if(!v||typeof v!=='object'||Array.isArray(v)||typeof v.available!=='boolean'||typeof v.dirty!=='boolean'||!['ok','invalid','unavailable','readFailed','writeFailed','verifyFailed','prepareFailed','conflict'].includes(v.safetyMode)||!['matches_last_checked_stored','no_saved_data','changed_since_load','storage_unavailable','screen_unavailable','not_confirmed'].includes(v.relationship)||!['','message','manual'].includes(v.pendingInput))throw new Error('画面の保存状態が不正です。');
+ if(!v.inputValues||typeof v.inputValues!=='object'||Array.isArray(v.inputValues)||typeof v.inputValues.message!=='string'||typeof v.inputValues.manual!=='string')throw new Error('入力欄の記録が不正です。');
+ if(v.available?!validData(v.data):v.data!==null)throw new Error('画面データの構造が不正です。');
+ if(v.pendingCandidateState!==null&&(!v.available||!validData(v.pendingCandidateState)))throw new Error('保存確認待ちデータの構造が不正です。');
+ if(v.available&&candidateProblems(v.data))throw new Error('画面データに形式を確認できない候補があります。');
+ if(v.pendingCandidateState!==null&&candidateProblems(v.pendingCandidateState))throw new Error('保存確認待ちデータに形式を確認できない候補があります。');
+ if((v.relationship==='screen_unavailable')===v.available)throw new Error('画面の利用状態が不正です。');
+ if(v.relationship==='storage_unavailable'&&s.readResult!=='unavailable')throw new Error('保存領域の確認状態が不正です。');
+ if(v.relationship==='no_saved_data'&&s.readResult!=='absent')throw new Error('保存領域の確認状態が不正です。');
+ if(v.relationship==='matches_last_checked_stored'&&(!v.available||v.safetyMode!=='ok'||v.dirty||v.pendingCandidateState!==null||s.readResult!=='present'||s.validation!=='valid'||JSON.stringify(v.data)!==s.rawJson))throw new Error('画面と保存領域の一致表示が不正です。');
+ return value;
+}
+function backupIdentity(value){return JSON.stringify({stored:value.stored,screen:value.screen})}
+function prepareBackup(){
+ preparedBackup=null;$('downloadBackup').disabled=true;$('verifyBackup').textContent='';
+ try{const snapshot=captureBackup();const text=JSON.stringify(snapshot,null,2);preparedBackup={snapshot,text};$('backupSummary').textContent='確認時点の内容です。変更した場合は、もう一度内容を確認してください。\n\n'+describeBackup(snapshot);$('downloadBackup').disabled=false}
+ catch(e){$('backupSummary').textContent='バックアップ内容を作成できませんでした。画面を閉じず、既存の復旧用ボタンも確認してください。'}
+}
+function startBackupDownload(){
+ if(!preparedBackup)return;
+ let url=null,a=null;
+ try{const now=captureBackup();if(backupIdentity(now)!==backupIdentity(preparedBackup.snapshot)){preparedBackup=null;$('downloadBackup').disabled=true;$('backupSummary').textContent='確認後にデータが変わったため、ダウンロードを停止しました。もう一度内容を確認してください。';return}
+  const filename='tsuideni-backup-'+preparedBackup.snapshot.createdAtDevice.replace(/[-:.]/g,'')+'.json',blob=new Blob([preparedBackup.text],{type:'application/json;charset=utf-8'}),details=describeBackup(preparedBackup.snapshot),large=blob.size>backupSizeLimit?' このファイルは64 MiBを超えるため、この画面では読み戻して確認できません。':'';url=URL.createObjectURL(blob);a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();lastDownloadedBackup=preparedBackup.text;$('backupSummary').textContent='ダウンロードを試みました。完了は確認できません。保存先でファイルを確認し、下の操作で選び直してください。'+large+'\n\n'+details
+ }catch(e){lastDownloadedBackup=null;$('backupSummary').textContent='ダウンロードを開始できませんでした。画面を閉じずにブラウザの設定を確認してください。'}
+ finally{if(a)try{a.remove()}catch(e){}if(url)try{setTimeout(()=>URL.revokeObjectURL(url),60000)}catch(e){}}
+}
+async function checkBackupFile(file){
+ const ticket=++verificationTicket,expected=lastDownloadedBackup;
+ if(!file){$('verifyBackup').textContent='確認不能：ファイルが選択されていません。';return}
+ if(file.size>backupSizeLimit){$('verifyBackup').textContent='確認不能：ファイルが大きすぎます（上限64 MiB）。';return}
+ $('verifyBackup').textContent='ファイルを確認しています。';
+ try{const text=await file.text();if(ticket!==verificationTicket)return;let data;try{data=JSON.parse(text)}catch(e){throw new Error('JSONを読み取れません。')};validateBackup(data);const details=(typeof file.name==='string'?`ファイル：${file.name}\n\n`:'')+describeBackup(data);
+  if(expected!==lastDownloadedBackup)$('verifyBackup').textContent='確認不能：照合対象が変わりました。もう一度ファイルを選んでください。\n\n'+details;
+  else if(expected===null)$('verifyBackup').textContent='確認不能：形式は確認できましたが、この画面で照合するダウンロード履歴がありません。\n\n'+details;
+  else if(text===expected)$('verifyBackup').textContent='一致：選んだファイルの内容は、この画面で最後にダウンロードを試みた内容と一致しました。元データの正常性を保証するものではなく、現在の保存領域とは別です。\n\n'+details;
+  else $('verifyBackup').textContent='不一致：選んだファイルは、最後にダウンロードを試みた内容と異なります。\n\n'+details;
+ }catch(e){if(ticket===verificationTicket)$('verifyBackup').textContent='確認不能：'+(e&&e.message?e.message:'ファイルを読み取れません。')}
+}
+$('previewBackup').addEventListener('click',prepareBackup);
+$('downloadBackup').addEventListener('click',startBackupDownload);
+$('backupFile').addEventListener('change',e=>{const file=e.target.files&&e.target.files[0];checkBackupFile(file);e.target.value=''});
+ $('retrySave').addEventListener('click',()=>{if(checkpointHold||!['readFailed','writeFailed','verifyFailed','prepareFailed'].includes(safetyMode))return;const success=save(true);$('status').textContent=success?'保存できました。':'';render()});
+$('downloadDraft').addEventListener('click',()=>{if(!loadedValid||safetyMode==='ok')return;const backup={...state,_recovery:{messageInput:$('message').value,manualInput:$('manual').value,note:'この画面の復旧用コピーです。入力欄は反映済みの場合もあります。候補確定の保存が未確認の場合、pendingCandidateStateは確定を試みたデータであり、保存済みとは限りません。',...(pendingState?{pendingCandidateState:pendingState}: {})}};$('backupNotice').textContent='この画面のデータと入力欄の復旧用コピーです。';downloadText('tsuideni-screen-backup.json',JSON.stringify(backup,null,2))});
+$('downloadStored').addEventListener('click',()=>{if(safetyMode==='ok')return;let current;try{current=localStorage.getItem(key)}catch(e){if(typeof observedRaw!=='string'){$('backupNotice').textContent='保存領域を再確認できません。以前に確認したデータもありません。';return}$('backupNotice').textContent='保存領域を再確認できません。最後に確認した時点のデータで、現在の内容と異なる可能性があります。';downloadText('tsuideni-stored-backup.txt',observedRaw);return}if(current!==observedRaw)rememberPrevious(observedRaw);observedRaw=current;syncSafetyUI();if(current===null){$('backupNotice').textContent='保存領域に対象のデータはありません。'+(typeof previousStoredRaw==='string'?'以前に確認したデータは別のボタンからダウンロードできます。':'');return}$('backupNotice').textContent='保存領域で今確認したデータです。画面だけに残る変更や入力欄は含みません。';downloadText('tsuideni-stored-backup.txt',current)});
+$('downloadPrevious').addEventListener('click',()=>{if(safetyMode==='ok'||typeof previousStoredRaw!=='string')return;$('backupNotice').textContent='以前に確認した時点のデータです。現在の保存領域や画面のデータと異なる可能性があります。';downloadText('tsuideni-previous-backup.txt',previousStoredRaw)});
+$('reloadSafe').addEventListener('click',()=>{if(checkpointHold)return;if(!confirm('再読み込みすると、この画面だけに残っている変更や入力は消えます。必要なバックアップは、ダウンロード先でファイルの存在と内容を確認してください。再読み込みしますか？'))return;allowUnload=true;location.reload()});
+window.addEventListener('storage',e=>{if(e.key!==key&&e.key!==null)return;if(safetyMode==='invalid'||!loadedValid)return;try{const current=localStorage.getItem(key);if(current!==expectedRaw){if(current!==observedRaw)rememberPrevious(observedRaw);observedRaw=current;safetyMode='conflict';syncSafetyUI()}}catch(err){if(safetyMode!=='conflict')safetyMode=unconfirmedRaw!==null?'verifyFailed':dirty?'readFailed':'unavailable';syncSafetyUI()}});
+window.addEventListener('beforeunload',e=>{if(!allowUnload&&(checkpointHold||(safetyMode!=='ok'&&(dirty||$('message').value||$('manual').value)))){e.preventDefault();e.returnValue=''}});
+let trialOpened=false;
+function showScreen(screen,focus=true){if(!['home','trial','share'].includes(screen))return;$('homeScreen').hidden=screen!=='home';$('trialScreen').hidden=screen!=='trial';$('shareScreen').hidden=screen!=='share';document.querySelector('.family').hidden=screen!=='trial';if(screen==='trial'&&!trialOpened){trialOpened=true;scrollChat()}if(focus)$(screen==='home'?'homeTitle':screen==='trial'?'trialTitle':'shareTitle').focus()}
+$('homeTrial').addEventListener('click',()=>showScreen('trial'));
+$('homeShare').addEventListener('click',()=>showScreen('share'));
+$('shareTrial').addEventListener('click',()=>showScreen('trial'));
+$('shareHome').addEventListener('click',()=>showScreen('home'));
+$('trialShare').addEventListener('click',()=>showScreen('share'));
+$('trialHome').addEventListener('click',()=>showScreen('home'));
+// 模擬状態はこの画面だけの一時情報。認証やデータ保存は行わない。
+let mockAuthState='signedOut';
+function renderMockAuth(){
+ const labels={signedOut:'未ログイン（模擬）',authenticating:'認証中（模擬）',signedIn:'ログイン済み・家族共有は準備中（模擬）',failed:'ログインに失敗しました（模擬）。もう一度試せます。',cancelled:'ログインをキャンセルしました（模擬）。'};
+ $('mockAuthStatus').textContent=labels[mockAuthState];
+ $('mockGoogleLogin').hidden=mockAuthState==='authenticating'||mockAuthState==='signedIn';
+ $('mockOutcomes').hidden=mockAuthState!=='authenticating';
+ $('mockLogout').hidden=mockAuthState!=='signedIn';
+}
+function startMockAuth(){if(!['signedOut','failed','cancelled'].includes(mockAuthState))return;mockAuthState='authenticating';renderMockAuth();$('mockSuccess').focus()}
+function finishMockAuth(result){if(mockAuthState!=='authenticating'||!['signedIn','failed','cancelled'].includes(result))return;mockAuthState=result;renderMockAuth();$(result==='signedIn'?'mockLogout':'mockGoogleLogin').focus()}
+function signOutMockAuth(){if(mockAuthState!=='signedIn')return;mockAuthState='signedOut';renderMockAuth();$('mockGoogleLogin').focus()}
+$('mockGoogleLogin').addEventListener('click',startMockAuth);
+$('mockSuccess').addEventListener('click',()=>finishMockAuth('signedIn'));
+$('mockFailure').addEventListener('click',()=>finishMockAuth('failed'));
+$('mockCancel').addEventListener('click',()=>finishMockAuth('cancelled'));
+$('mockLogout').addEventListener('click',signOutMockAuth);
+// 再読み込みの練習用。将来の認証側は、退避成功を確認してから画面遷移する。
+const checkpointKey='tsuideni-katte-auth-checkpoint-v1',checkpointMarker='tsuideniAuthCheckpoint',checkpointTTL=30*60*1000;
+let checkpointRaw=null,checkpointRestored=false,checkpointOpenTrial=false,checkpointChecking=false,checkpointStorageStatus='',checkpointSnapshot=null;
+const checkpointLeases=new Map();
+function checkpointMessage(message,canConfirm=false,canExport=false,canRetry=false){$('checkpointPanel').hidden=false;$('checkpointMessage').textContent=message;$('checkpointConfirm').hidden=!canConfirm;$('checkpointExport').hidden=!canExport;$('checkpointRetry').hidden=!canRetry}
+function checkpointHash(value){let h=2166136261;for(let i=0;i<value.length;i++)h=Math.imul(h^value.charCodeAt(i),16777619);return (h>>>0).toString(16).padStart(8,'0')}
+function checkpointId(){const bytes=new Uint8Array(16);crypto.getRandomValues(bytes);return Array.from(bytes,n=>n.toString(16).padStart(2,'0')).join('')}
+function checkpointHistory(){const value=history.state;return value&&typeof value==='object'&&!Array.isArray(value)?value[checkpointMarker]:null}
+function checkpointOrigin(){return {origin:String(location.origin||''),path:String(location.pathname||'')}}
+function acquireCheckpointLock(id,onGranted,onDenied){
+ let manager;try{manager=navigator.locks}catch(e){onDenied('error');return}
+ if(!manager||typeof manager.request!=='function'){onDenied('unsupported');return}
+ let settled=false,timer;
+ const deny=reason=>{if(settled)return;settled=true;if(typeof clearTimeout==='function')clearTimeout(timer);onDenied(reason)};
+ try{
+  timer=setTimeout(()=>deny('timeout'),5000);
+  const request=manager.request('tsuideni-checkpoint-'+id,{mode:'exclusive',ifAvailable:true},lock=>{
+   if(settled)return;
+   if(!lock){deny('busy');return}
+   settled=true;if(typeof clearTimeout==='function')clearTimeout(timer);
+   let release;const held=new Promise(resolve=>{release=resolve});const lease={id,release};checkpointLeases.set(id,lease);
+   try{onGranted(lease)}catch(e){checkpointLeases.delete(id);release();onDenied('error')}
+   return held;
+  });
+  if(!request||typeof request.catch!=='function')throw new Error('lock');
+  request.catch(()=>{if(!settled)deny('error');else if(checkpointLeases.has(id)){checkpointLeases.delete(id);checkpointHold=true;syncSafetyUI();checkpointMessage('タブの保護を確認できません。編集を停止しています。一時データを確認してください。',false,typeof checkpointRaw==='string')}});
+ }catch(e){deny('error')}
+}
+function releaseCheckpointLock(lease){if(lease&&checkpointLeases.get(lease.id)===lease){checkpointLeases.delete(lease.id);lease.release()}}
+function keepCheckpointLockUntilExpiry(lease,expiresAt){
+ const wait=()=>{const left=expiresAt-Date.now();if(left<=0){releaseCheckpointLock(lease);return}setTimeout(wait,left)};
+ try{wait()}catch(e){} // タイマーを使えない場合はタブを閉じるまで保持する。
+}
+function captureAuthCheckpoint(){
+ let current=null,readable=false;try{current=localStorage.getItem(key);readable=true}catch(e){}
+ if(readable&&loadedValid&&safetyMode==='ok'&&current!==expectedRaw){if(current!==observedRaw)rememberPrevious(observedRaw);observedRaw=current;safetyMode='conflict';syncSafetyUI()}
+ return {state,pendingState,pendingCandidateIndex,expectedRaw,observedRaw,previousStoredRaw,unconfirmedRaw,safetyMode,dirty,pendingInput,loadedValid,who,storeFilter,input:{message:$('message').value,manual:$('manual').value},stored:{readable,raw:readable?current:null}};
+}
+function validCheckpoint(s){
+ const stringOrNull=x=>x===null||typeof x==='string';
+ if(!s||typeof s!=='object'||Array.isArray(s)||!validData(s.state)||typeof s.loadedValid!=='boolean'||typeof s.dirty!=='boolean')return false;
+ if(!['ok','invalid','unavailable','readFailed','writeFailed','verifyFailed','prepareFailed','conflict'].includes(s.safetyMode)||!['','message','manual'].includes(s.pendingInput))return false;
+ if(![s.expectedRaw,s.observedRaw,s.previousStoredRaw,s.unconfirmedRaw].every(stringOrNull)||!s.input||typeof s.input.message!=='string'||typeof s.input.manual!=='string')return false;
+ if(!s.stored||typeof s.stored.readable!=='boolean'||!stringOrNull(s.stored.raw)||(!s.stored.readable&&s.stored.raw!==null))return false;
+ if(!Object.prototype.hasOwnProperty.call(avatar,s.who)||!['すべて',...stores].includes(s.storeFilter))return false;
+ if(s.pendingState===null){if(s.pendingCandidateIndex!==null)return false}else{
+  if(!s.loadedValid||!s.dirty||!validData(s.pendingState)||!Number.isInteger(s.pendingCandidateIndex)||s.pendingCandidateIndex<0||s.pendingCandidateIndex>=s.state.messages.length||s.pendingState.messages.length!==s.state.messages.length)return false;
+  const before=s.state.messages[s.pendingCandidateIndex],after=s.pendingState.messages[s.pendingCandidateIndex];
+  if(!validCandidates(before)||!validCandidates(after)||before.candidateStatus!=='pending'||!['completed','cancelled'].includes(after.candidateStatus)||before.id!==after.id||JSON.stringify(before.candidates)!==JSON.stringify(after.candidates))return false;
+ }
+ if(s.safetyMode==='verifyFailed'&&s.unconfirmedRaw===null)return false;
+ if(s.safetyMode==='ok'&&(!s.loadedValid||s.dirty||s.pendingState!==null||s.unconfirmedRaw!==null))return false;
+ return true;
+}
+function prepareAuthCheckpoint(onReady){
+ if(checkpointHold||checkpointChecking){checkpointMessage('一時データを確認するまで再読み込みは開始できません。',checkpointRestored,typeof checkpointRaw==='string');return}
+ let id;
+ try{const existing=sessionStorage.getItem(checkpointKey);if(existing!==null||checkpointHistory()){checkpointRaw=existing;checkpointHold=true;syncSafetyUI();checkpointMessage('確認が必要な一時データが残っています。上書きせず停止しました。',false,typeof existing==='string');return}id=checkpointId()}
+ catch(e){checkpointMessage('退避を確認できないため、再読み込みは行いません。おためし版で内容を確認し、必要ならバックアップしてください。');return}
+ checkpointChecking=true;checkpointHold=true;syncSafetyUI();checkpointMessage('このタブの一時データを準備しています。編集は一時停止しています。');
+ acquireCheckpointLock(id,lease=>{
+  checkpointChecking=false;let written=false;
+  try{
+   const existing=sessionStorage.getItem(checkpointKey);if(existing!==null||checkpointHistory()){checkpointRaw=existing;throw new Error('existing')}
+   const now=Date.now(),origin=checkpointOrigin(),snapshot=captureAuthCheckpoint();if(!validCheckpoint(snapshot))throw new Error('snapshot');
+   const payload=JSON.stringify({id,createdAt:now,expiresAt:now+checkpointTTL,origin,snapshot});
+   const raw=JSON.stringify({format:'tsuideni-auth-checkpoint',version:1,payload,checksum:checkpointHash(payload)});
+   sessionStorage.setItem(checkpointKey,raw);written=true;checkpointRaw=raw;
+   if(sessionStorage.getItem(checkpointKey)!==raw)throw new Error('readback');
+   const prior=history.state;if(prior!==null&&(typeof prior!=='object'||Array.isArray(prior)))throw new Error('history');
+   history.replaceState({...prior,[checkpointMarker]:id},'');
+   if(checkpointHistory()!==id||sessionStorage.getItem(checkpointKey)!==raw)throw new Error('marker');
+   keepCheckpointLockUntilExpiry(lease,now+checkpointTTL);
+   checkpointMessage('一時データを退避しました。保存済みとは限りません。再読み込み後、内容を確認してください。',false,true);
+   if(typeof onReady==='function')onReady();
+  }catch(e){let unknown=false;if(!written){try{const saved=sessionStorage.getItem(checkpointKey);if(typeof saved==='string')checkpointRaw=saved}catch(err){unknown=true}releaseCheckpointLock(lease)}if(!written&&checkpointRaw===null&&!unknown){checkpointHold=false;syncSafetyUI()}checkpointMessage('退避を確認できないため、再読み込みは行いません。おためし版で内容を確認し、必要ならバックアップしてください。',false,typeof checkpointRaw==='string')}
+ },reason=>{checkpointChecking=false;checkpointHold=false;syncSafetyUI();checkpointMessage(reason==='unsupported'?'このブラウザではタブの保護を確認できません。再読み込みは行いません。':'タブの保護を確保できないため、再読み込みは行いません。おためし版の内容は残っています。')});
+}
+function describeCheckpointStorage(s,current,readable,mode){
+ if(mode==='conflict')return '保存領域に別タブとの競合があります。画面内容で上書きしません。';
+ if(mode==='verifyFailed')return '保存結果を確認できません。操作は成功済みとして扱いません。';
+ if(!readable)return '保存領域の現在の内容を確認できません。';
+ if(mode==='invalid')return '保存データが破損または不正です。元のデータを保持しています。';
+ if(mode==='writeFailed'||mode==='readFailed'||mode==='prepareFailed'||mode==='unavailable')return '保存エラーが残っています。画面の変更は保存済みとは限りません。';
+ if(!s.stored.readable)return '退避時の保存領域を確認できませんでした。';
+ if(current===null)return '保存領域にデータはありません。画面内容は保存済みとは限りません。';
+ if(!s.dirty&&!s.pendingState&&JSON.stringify(s.state)===current)return '買い物メモ・チャットは保存領域と一致しています。入力欄は別です。';
+ return '保存領域は退避時と一致していますが、画面内容は保存済みとは限りません。';
+}
+function restoreAuthCheckpoint(){
+ if(checkpointRestored||checkpointChecking)return;
+ let marker,raw;try{marker=checkpointHistory();raw=sessionStorage.getItem(checkpointKey)}catch(e){checkpointHold=true;syncSafetyUI();checkpointMessage('一時データの有無を確認できません。復元・編集を停止しました。保存領域を確認し、再確認してください。',false,typeof checkpointRaw==='string',true);return}
+ if(!marker&&raw===null)return;
+ checkpointRaw=raw;checkpointHold=true;syncSafetyUI();
+ let value;
+ try{
+  if(window.opener)throw new Error('opener');
+  if(typeof raw!=='string'||typeof marker!=='string')throw new Error('marker');
+  const envelope=JSON.parse(raw);if(!envelope||envelope.format!=='tsuideni-auth-checkpoint'||envelope.version!==1||typeof envelope.payload!=='string'||envelope.checksum!==checkpointHash(envelope.payload))throw new Error('corrupt');
+  value=JSON.parse(envelope.payload);const now=Date.now(),origin=checkpointOrigin();
+  if(!value||typeof value.id!=='string'||!/^[0-9a-f]{32}$/.test(value.id)||value.id!==marker||!Number.isSafeInteger(value.createdAt)||value.expiresAt!==value.createdAt+checkpointTTL||now<value.createdAt||now>=value.expiresAt)throw new Error('expired');
+  if(!value.origin||value.origin.origin!==origin.origin||value.origin.path!==origin.path||!validCheckpoint(value.snapshot))throw new Error('invalid');
+ }catch(e){checkpointMessage('一時データを復元できません。元の保存データと一時データを残して停止しました。必要なら一時データをダウンロードしてください。',false,typeof raw==='string');return}
+ checkpointChecking=true;checkpointMessage('タブと一時データを確認しています。確認が終わるまで編集を停止します。',false,true);
+ acquireCheckpointLock(value.id,lease=>{
+  checkpointChecking=false;const s=value.snapshot;
+  let previous=null;
+  try{
+   if(sessionStorage.getItem(checkpointKey)!==raw||checkpointHistory()!==marker||Date.now()<value.createdAt||Date.now()>=value.expiresAt)throw new Error('changed');
+   let current=null,readable=false;try{current=localStorage.getItem(key);readable=true}catch(e){}
+   let newMode=s.safetyMode,newObserved=s.observedRaw,newPrevious=s.previousStoredRaw;
+   if(!readable){if(s.loadedValid&&newMode==='ok')newMode='readFailed';else if(!s.loadedValid&&newMode!=='invalid')newMode='unavailable'}
+   else if(!s.stored.readable||current!==s.stored.raw||(newMode==='ok'&&current!==s.expectedRaw)){if(current!==newObserved&&newPrevious===null&&typeof newObserved==='string')newPrevious=newObserved;newObserved=current;if(s.loadedValid)newMode='conflict';else if(newMode!=='invalid')newMode='unavailable'}
+   previous={state,pendingState,pendingCandidateIndex,expectedRaw,observedRaw,previousStoredRaw,unconfirmedRaw,safetyMode,dirty,pendingInput,loadedValid,who,storeFilter,message:$('message').value,manual:$('manual').value,whoValue:$('who').value};
+   $('who').value=s.who;$('message').value=s.input.message;$('manual').value=s.input.manual;
+   state=s.state;pendingState=s.pendingState;pendingCandidateIndex=s.pendingCandidateIndex;expectedRaw=s.expectedRaw;observedRaw=newObserved;previousStoredRaw=newPrevious;unconfirmedRaw=s.unconfirmedRaw;safetyMode=newMode;dirty=s.dirty;pendingInput=s.pendingInput;loadedValid=s.loadedValid;who=s.who;storeFilter=s.storeFilter;
+   checkpointSnapshot=s;checkpointStorageStatus=describeCheckpointStorage(s,current,readable,safetyMode);
+   checkpointRestored=true;checkpointOpenTrial=true;keepCheckpointLockUntilExpiry(lease,value.expiresAt);
+   checkpointMessage('一時データを復元しました。'+checkpointStorageStatus+' 入力欄・候補・保存状態を確認してください。確認まで編集を停止しています。',true,true);
+   showScreen('trial',false);render();
+  }catch(e){
+   if(previous){state=previous.state;pendingState=previous.pendingState;pendingCandidateIndex=previous.pendingCandidateIndex;expectedRaw=previous.expectedRaw;observedRaw=previous.observedRaw;previousStoredRaw=previous.previousStoredRaw;unconfirmedRaw=previous.unconfirmedRaw;safetyMode=previous.safetyMode;dirty=previous.dirty;pendingInput=previous.pendingInput;loadedValid=previous.loadedValid;who=previous.who;storeFilter=previous.storeFilter;try{$('who').value=previous.whoValue;$('message').value=previous.message;$('manual').value=previous.manual}catch(err){}}
+   checkpointRestored=false;checkpointOpenTrial=false;releaseCheckpointLock(lease);checkpointHold=true;syncSafetyUI();checkpointMessage('復元を完了できません。元の保存データと一時データを残して停止しました。必要なら一時データをダウンロードしてください。',false,true);
+  }
+ },reason=>{checkpointChecking=false;checkpointHold=true;syncSafetyUI();checkpointMessage(reason==='busy'?'同じ一時データを別のタブが使用中です。復元・編集を停止しました。':reason==='unsupported'?'このブラウザではタブの保護を確認できません。復元・編集を停止しました。':'タブの保護を確認できず、復元・編集を停止しました。',false,true,reason!=='unsupported')});
+}
+function confirmAuthCheckpoint(){
+ if(!checkpointHold||!checkpointRestored||typeof checkpointRaw!=='string')return;
+ if(!confirm('入力欄・候補・保存状態を確認しましたか？ 未保存の変更は保存済みとは限りません。必要なバックアップを確認してから、一時データを破棄します。'))return;
+ let prior=null,markerCleared=false;
+ try{
+  if(sessionStorage.getItem(checkpointKey)!==checkpointRaw)throw new Error('changed');prior=history.state;if(!prior||typeof prior!=='object')throw new Error('history');const parsed=JSON.parse(checkpointRaw),value=JSON.parse(parsed.payload);if(checkpointHistory()!==value.id)throw new Error('marker');
+  if(Date.now()<value.expiresAt&&!checkpointLeases.has(value.id))throw new Error('lock');
+  let current=null,readable=false;try{current=localStorage.getItem(key);readable=true}catch(e){}
+  if(!readable){if(loadedValid&&safetyMode==='ok')safetyMode='readFailed';else if(!loadedValid&&safetyMode!=='invalid')safetyMode='unavailable'}
+  else if(!checkpointSnapshot.stored.readable||current!==checkpointSnapshot.stored.raw||(safetyMode==='ok'&&current!==expectedRaw)){if(current!==observedRaw)rememberPrevious(observedRaw);observedRaw=current;if(loadedValid)safetyMode='conflict';else if(safetyMode!=='invalid')safetyMode='unavailable'}
+  checkpointStorageStatus=describeCheckpointStorage(checkpointSnapshot,current,readable,safetyMode);
+  const next={...prior};delete next[checkpointMarker];history.replaceState(next,'');markerCleared=true;if(checkpointHistory())throw new Error('history');
+  sessionStorage.removeItem(checkpointKey);if(sessionStorage.getItem(checkpointKey)!==null)throw new Error('remove');
+  checkpointRaw=null;checkpointRestored=false;checkpointHold=false;checkpointSnapshot=null;syncSafetyUI();render();
+  checkpointMessage('復元内容を確認し、一時データを破棄しました。確認完了は保存成功を意味しません。'+checkpointStorageStatus,false,false);
+ }catch(e){if(markerCleared&&prior)try{history.replaceState(prior,'')}catch(err){}checkpointMessage('復元内容を確認しましたが、一時データの破棄を確認できません。確認完了は保存成功を意味しません。画面を閉じず、必要なデータをバックアップしてください。',checkpointRestored,typeof checkpointRaw==='string');syncSafetyUI()}
+}
+function exportAuthCheckpoint(){
+ try{let raw=null,last=false;try{raw=sessionStorage.getItem(checkpointKey)}catch(e){}if(typeof raw!=='string'&&typeof checkpointRaw==='string'){raw=checkpointRaw;last=true}if(typeof raw!=='string')throw new Error('unavailable');const url=URL.createObjectURL(new Blob([raw],{type:'application/json;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='tsuideni-auth-checkpoint.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);$('checkpointExportNotice').textContent=(last?'最後に確認した一時データです。現在の内容とは限りません。':'一時データです。')+'ダウンロードを試みました。通常のバックアップファイルとは形式が異なります。完了は確認できません。保存先でファイルを確認してください。'}catch(e){$('checkpointExportNotice').textContent='ダウンロードを開始できませんでした。画面を閉じず、保存状態を確認してください。'}
+}
+$('checkpointSimulate').addEventListener('click',()=>{prepareAuthCheckpoint(()=>{try{allowUnload=true;location.reload()}catch(e){allowUnload=false;checkpointHold=true;syncSafetyUI();checkpointMessage('再読み込みを開始できません。一時データと画面の内容を保持しています。',false,true)}})});
+$('checkpointConfirm').addEventListener('click',confirmAuthCheckpoint);
+$('checkpointRetry').addEventListener('click',restoreAuthCheckpoint);
+$('checkpointExport').addEventListener('click',exportAuthCheckpoint);
+restoreAuthCheckpoint();
+renderMockAuth();
+showScreen(checkpointOpenTrial?'trial':'home',false);
+render();scrollChat();
+})();
+</script>
+</body>
+</html>
